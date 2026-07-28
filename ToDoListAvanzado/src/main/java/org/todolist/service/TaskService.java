@@ -35,7 +35,7 @@ public class TaskService {
 
         if (id <= 0) {
             throw new IllegalArgumentException(
-                    "El ID debe ser mayor que 0."
+                    "El ID debe ser mayor que 0"
             );
         }
 
@@ -57,7 +57,7 @@ public class TaskService {
 
         if (id <= 0) {
             throw new IllegalArgumentException(
-                    "El ID debe ser mayor que 0."
+                    "El ID debe ser mayor que 0"
             );
         }
 
@@ -65,7 +65,7 @@ public class TaskService {
 
         if (tarea == null) {
             throw new IllegalArgumentException(
-                    "No existe una tarea con ese ID."
+                    "No existe una tarea con ese ID"
             );
         }
 
@@ -78,7 +78,7 @@ public class TaskService {
 
         if (task == null) {
             throw new IllegalArgumentException(
-                    "La tarea no puede ser null."
+                    "La tarea no puede ser null"
             );
         }
 
@@ -86,7 +86,7 @@ public class TaskService {
                 task.getTitulo().trim().isEmpty()) {
 
             throw new IllegalArgumentException(
-                    "El titulo de la tarea es obligatorio."
+                    "El titulo de la tarea es obligatorio"
             );
         }
 
@@ -94,21 +94,21 @@ public class TaskService {
                 task.getProgreso() > 100) {
 
             throw new IllegalArgumentException(
-                    "El progreso debe estar entre 0 y 100."
+                    "El progreso debe estar entre 0 y 100"
             );
         }
 
         if (task.getPrioridad() == null) {
 
             throw new IllegalArgumentException(
-                    "La prioridad es obligatoria."
+                    "La prioridad es obligatoria"
             );
         }
 
         if (task.getEstado() == null) {
 
             throw new IllegalArgumentException(
-                    "El estado es obligatorio."
+                    "El estado es obligatorio"
             );
         }
 
@@ -119,7 +119,7 @@ public class TaskService {
 
             throw new IllegalArgumentException(
                     "La fecha lImite no puede ser anterior " +
-                            "a la fecha de creaciOn."
+                            "a la fecha de creaciOn"
             );
         }
     }

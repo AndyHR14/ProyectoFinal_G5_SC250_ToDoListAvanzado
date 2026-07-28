@@ -79,12 +79,12 @@ public class CategoryService {
 
 
 
-
+    ///---Validaciones---///
     private void validarCategory(Category category) {
 
         if (category == null) {
             throw new IllegalArgumentException(
-                    "La categoria no puede ser null."
+                    "La categoria no puede ser null"
             );
         }
 
@@ -92,7 +92,7 @@ public class CategoryService {
                 category.getNombre().trim().isEmpty()) {
 
             throw new IllegalArgumentException(
-                    "El nombre de la categoria es obligatorio."
+                    "El nombre de la categoria es obligatorio"
             );
         }
 
@@ -100,7 +100,7 @@ public class CategoryService {
 
             throw new IllegalArgumentException(
                     "El nombre de la categoria no puede " +
-                            "superar los 50 caracteres."
+                            "superar los 50 caracteres"
             );
         }
 
@@ -108,7 +108,7 @@ public class CategoryService {
                 category.getColor().length() > 20) {
 
             throw new IllegalArgumentException(
-                    "El color no puede superar los 20 caracteres."
+                    "El color no puede superar los 20 caracteres"
             );
         }
     }

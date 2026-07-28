@@ -5,13 +5,14 @@ import org.todolist.enums.Estado;
 import org.todolist.enums.Prioridad;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TaskRepository {
 
-    // CREATE
+
+
+    ///---Guardar Tarea---///
     public void guardar(Task task) {
 
         String sql = """
@@ -75,7 +76,8 @@ public class TaskRepository {
     }
 
 
-    //  Obtener todas las tareas
+
+    ///---Obtener todas las tareas ---///
     public List<Task> obtenerTodas() {
 
         List<Task> tareas = new ArrayList<>();
@@ -101,7 +103,8 @@ public class TaskRepository {
     }
 
 
-    // Buscar una tarea por ID
+
+    ///---Buscar tareas por id---///
     public Task buscarPorId(int id) {
 
         String sql = "SELECT * FROM tareas WHERE id_tarea = ?";
@@ -127,7 +130,8 @@ public class TaskRepository {
     }
 
 
-    // UPDATE
+
+    ///---Actualizar tarea---///
     public void actualizar(Task task) {
 
         String sql = """
@@ -199,7 +203,8 @@ public class TaskRepository {
     }
 
 
-    // DELETE
+
+    ///---Eliminar tarea---///
     public void eliminar(int id) {
 
         String sql = "DELETE FROM tareas WHERE id_tarea = ?";
@@ -218,7 +223,8 @@ public class TaskRepository {
     }
 
 
-    // Método auxiliar para convertir un registro de BD en un objeto Task
+
+    ///---Convertir el registro de la BD en un objeto tarea---///
     private Task convertirTask(ResultSet resultado) throws SQLException {
 
         Task task = new Task();
