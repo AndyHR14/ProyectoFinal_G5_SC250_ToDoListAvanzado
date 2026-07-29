@@ -90,7 +90,7 @@ CREATE TABLE etiquetas (
 
 -- =====================================================
 -- TABLA INTERMEDIA: TAREA_ETIQUETA
--- RELACIÓN MUCHOS A MUCHOS
+-- RELACION MUCHOS A MUCHOS
 -- =====================================================
 
 CREATE TABLE tarea_etiqueta (
@@ -176,7 +176,7 @@ CREATE TABLE registro_tiempo (
 );
 
 -- =====================================================
--- ÍNDICES 
+-- INDICES 
 -- =====================================================
 
 CREATE INDEX idx_tareas_usuario
@@ -217,7 +217,7 @@ INSERT INTO etiquetas (nombre) VALUES
 ('Urgente'),
 ('Importante'),
 ('Pendiente'),
-('Revisión');
+('Revisiï¿½n');
 
 -- =====================================================
 -- FIN DEL SCRIPT
