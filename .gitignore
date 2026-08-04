@@ -1,1 +1,11 @@
 /ToDoListAvanzado/target/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# IDE / OS
+.idea/
+*.iml
+.DS_Store
