@@ -8,7 +8,6 @@ package org.todolist.service;
  *
  * @author Alvm Tech
  */
-package org.todolist.service;
 
 import org.todolist.model.TimeLog;
 import org.todolist.repository.TimeLogRepository;
