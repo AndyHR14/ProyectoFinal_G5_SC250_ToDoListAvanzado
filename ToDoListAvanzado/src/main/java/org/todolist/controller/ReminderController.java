@@ -8,7 +8,6 @@ package org.todolist.controller;
  *
  * @author Alvm Tech
  */
-package org.todolist.controller;
 
 import org.todolist.model.Reminder;
 import org.todolist.service.ReminderService;

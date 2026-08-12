@@ -8,7 +8,6 @@ package org.todolist.service;
  *
  * @author Alvm Tech
  */
-package org.todolist.service;
 
 import org.todolist.model.SubTask;
 import org.todolist.repository.SubTaskRepository;
