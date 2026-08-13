@@ -79,9 +79,36 @@
 
         <div class="usuario-menu">
 
-            <span class="texto-tareas">
-                Mis tareas
-            </span>
+            <!-- Accesos rapidos -->
+            <nav class="accesos-rapidos">
+
+                <a
+                    href="${pageContext.request.contextPath}/tareas"
+                    class="acceso-rapido">
+                    Mis tareas
+                </a>
+
+                <a href="${pageContext.request.contextPath}/tags"
+                   class="acceso-rapido">
+                    Tags
+                </a>
+
+                <a href="${pageContext.request.contextPath}/categorias"
+                   class="acceso-rapido">
+                    Categorías
+                </a>
+
+                <a href="${pageContext.request.contextPath}/subtareas"
+                   class="acceso-rapido">
+                    Subtareas
+                </a>
+
+                <a href="${pageContext.request.contextPath}/recordatorios"
+                   class="acceso-rapido">
+                    Recordatorios
+                </a>
+
+            </nav>
 
             <a
                     class="boton-salir"

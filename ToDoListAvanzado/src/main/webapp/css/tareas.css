@@ -200,6 +200,39 @@ body {
     transform: translateY(-1px);
 }
 
+/* ============================================================
+   ACCESO RAPIDO
+   ============================================================ */
+.accesos-rapidos {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 20px;
+}
+
+.acceso-rapido {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #4f46e5;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.acceso-rapido:hover {
+    background-color: #3730a3;
+}
+
+.usuario-menu {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
 
 /* ============================================================
    CONTENEDOR PRINCIPAL
