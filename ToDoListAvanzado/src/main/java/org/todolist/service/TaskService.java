@@ -1,3 +1,4 @@
+
 package org.todolist.service;
 
 import org.todolist.model.Task;
@@ -9,12 +10,18 @@ public class TaskService {
 
     private final TaskRepository taskRepository;
 
+
     public TaskService() {
-        this.taskRepository = new TaskRepository();
+
+        this.taskRepository =
+                new TaskRepository();
     }
 
 
-    // Crear tarea
+    
+    ///CREAR TAREA
+    
+
     public void crearTarea(Task task) {
 
         validarTarea(task);
@@ -23,17 +30,44 @@ public class TaskService {
     }
 
 
-    // Obtener todas las tareas
+    
+    ///OBTENER TODAS LAS TAREAS
+    
+
     public List<Task> obtenerTodasLasTareas() {
 
         return taskRepository.obtenerTodas();
     }
 
 
-    // Buscar una tarea
+    
+    ///OBTENER TAREAS POR USUARIO
+    
+
+    public List<Task> obtenerTareasPorUsuario(
+            int idUsuario) {
+
+        if (idUsuario <= 0) {
+
+            throw new IllegalArgumentException(
+                    "El ID del usuario debe ser mayor que 0"
+            );
+        }
+
+        return taskRepository.obtenerPorUsuario(
+                idUsuario
+        );
+    }
+
+
+    
+    ///BUSCAR UNA TAREA
+    
+
     public Task buscarTareaPorId(int id) {
 
         if (id <= 0) {
+
             throw new IllegalArgumentException(
                     "El ID debe ser mayor que 0"
             );
@@ -43,7 +77,10 @@ public class TaskService {
     }
 
 
-    // Actualizar tarea
+    
+    ///ACTUALIZAR TAREA
+    
+
     public void actualizarTarea(Task task) {
 
         validarTarea(task);
@@ -52,18 +89,24 @@ public class TaskService {
     }
 
 
-    // Eliminar tarea
+    
+    ///ELIMINAR TAREA
+    
+
     public void eliminarTarea(int id) {
 
         if (id <= 0) {
+
             throw new IllegalArgumentException(
                     "El ID debe ser mayor que 0"
             );
         }
 
-        Task tarea = taskRepository.buscarPorId(id);
+        Task tarea =
+                taskRepository.buscarPorId(id);
 
         if (tarea == null) {
+
             throw new IllegalArgumentException(
                     "No existe una tarea con ese ID"
             );
@@ -73,14 +116,19 @@ public class TaskService {
     }
 
 
-    // Validaciones
+    
+    ///VALIDACIONES
+    
+
     private void validarTarea(Task task) {
 
         if (task == null) {
+
             throw new IllegalArgumentException(
                     "La tarea no puede ser null"
             );
         }
+
 
         if (task.getTitulo() == null ||
                 task.getTitulo().trim().isEmpty()) {
@@ -90,6 +138,7 @@ public class TaskService {
             );
         }
 
+
         if (task.getProgreso() < 0 ||
                 task.getProgreso() > 100) {
 
@@ -98,12 +147,14 @@ public class TaskService {
             );
         }
 
+
         if (task.getPrioridad() == null) {
 
             throw new IllegalArgumentException(
                     "La prioridad es obligatoria"
             );
         }
+
 
         if (task.getEstado() == null) {
 
@@ -112,15 +163,32 @@ public class TaskService {
             );
         }
 
+
+        if (task.getIdUsuario() <= 0) {
+
+            throw new IllegalArgumentException(
+                    "El usuario de la tarea es obligatorio"
+            );
+        }
+
+
+        if (task.getFechaCreacion() == null) {
+
+            throw new IllegalArgumentException(
+                    "La fecha de creacion es obligatoria"
+            );
+        }
+
+
         if (task.getFechaLimite() != null &&
-                task.getFechaCreacion() != null &&
                 task.getFechaLimite()
                         .isBefore(task.getFechaCreacion())) {
 
             throw new IllegalArgumentException(
-                    "La fecha lImite no puede ser anterior " +
-                            "a la fecha de creaciOn"
+                    "La fecha limite no puede ser anterior " +
+                            "a la fecha de creacion"
             );
         }
     }
 }
+

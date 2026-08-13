@@ -1,0 +1,1329 @@
+/* ============================================================
+   VARIABLES / PALETA
+   ============================================================ */
+
+:root {
+    --primario: #4f46e5;
+    --primario-hover: #4338ca;
+    --primario-suave: #eef2ff;
+
+    --fondo: #f5f7fb;
+    --blanco: #ffffff;
+
+    --texto: #172033;
+    --texto-secundario: #64748b;
+    --texto-suave: #94a3b8;
+
+    --borde: #e2e8f0;
+
+    --rojo: #dc2626;
+    --rojo-suave: #fef2f2;
+
+    --amarillo: #d97706;
+    --amarillo-suave: #fffbeb;
+
+    --verde: #16a34a;
+    --verde-suave: #f0fdf4;
+
+    --azul: #2563eb;
+    --azul-suave: #eff6ff;
+
+    --sombra: 0 8px 25px rgba(15, 23, 42, 0.07);
+    --sombra-hover: 0 14px 35px rgba(15, 23, 42, 0.12);
+
+    --radio: 14px;
+}
+
+
+/* ============================================================
+   RESET
+   ============================================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family:
+            Inter,
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            Arial,
+            Helvetica,
+            sans-serif;
+
+    background:
+            radial-gradient(
+                    circle at top left,
+                    #eef2ff 0,
+                    transparent 32%
+            ),
+            var(--fondo);
+
+    color: var(--texto);
+    min-height: 100vh;
+}
+
+
+/* ============================================================
+   SELECCIÓN DE TEXTO
+   ============================================================ */
+
+::selection {
+    background-color: #c7d2fe;
+    color: #1e1b4b;
+}
+
+
+/* ============================================================
+   BARRA SUPERIOR
+   ============================================================ */
+
+.barra-superior {
+    width: 100%;
+
+    background:
+            linear-gradient(
+                    135deg,
+                    #312e81,
+                    #4f46e5
+            );
+
+    color: white;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    box-shadow:
+            0 4px 18px rgba(30, 27, 75, 0.18);
+}
+
+.barra-contenido {
+    max-width: 1250px;
+    margin: 0 auto;
+
+    padding: 15px 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* ============================================================
+   LOGO
+   ============================================================ */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+
+    color: white;
+}
+
+.logo-icono {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background-color: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    color: white;
+
+    font-size: 19px;
+    font-weight: 800;
+
+    box-shadow:
+            0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+
+/* ============================================================
+   MENÚ USUARIO
+   ============================================================ */
+
+.usuario-menu {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.texto-tareas {
+    color: rgba(255, 255, 255, 0.85);
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.boton-salir {
+    text-decoration: none;
+
+    color: white;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    padding: 9px 14px;
+
+    border-radius: 9px;
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    background-color: rgba(255, 255, 255, 0.10);
+
+    transition:
+            background-color 0.2s ease,
+            transform 0.2s ease;
+}
+
+.boton-salir:hover {
+    background-color: rgba(255, 255, 255, 0.20);
+
+    transform: translateY(-1px);
+}
+
+
+/* ============================================================
+   CONTENEDOR PRINCIPAL
+   ============================================================ */
+
+.contenedor-principal {
+    width: 100%;
+    max-width: 1250px;
+
+    margin: 0 auto;
+
+    padding: 42px 28px 70px;
+}
+
+
+/* ============================================================
+   ENCABEZADO
+   ============================================================ */
+
+.encabezado-pagina {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+
+    margin-bottom: 30px;
+}
+
+.encabezado-pagina h1 {
+    margin: 0 0 8px;
+
+    font-size: 36px;
+    line-height: 1.1;
+
+    letter-spacing: -1px;
+
+    color: var(--texto);
+}
+
+.encabezado-pagina p {
+    margin: 0;
+
+    color: var(--texto-secundario);
+
+    font-size: 15px;
+}
+
+
+/* ============================================================
+   CONTADOR
+   ============================================================ */
+
+.contador-tareas {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 12px 17px;
+
+    background-color: var(--blanco);
+
+    border: 1px solid var(--borde);
+
+    border-radius: 12px;
+
+    box-shadow: 0 3px 12px rgba(15, 23, 42, 0.05);
+}
+
+.contador-numero {
+    min-width: 30px;
+
+    font-size: 22px;
+    font-weight: 800;
+
+    color: var(--primario);
+
+    text-align: center;
+}
+
+.contador-texto {
+    color: var(--texto-secundario);
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* ============================================================
+   FORMULARIO
+   ============================================================ */
+
+.formulario-tarea {
+    background-color: var(--blanco);
+
+    border: 1px solid var(--borde);
+
+    border-radius: 18px;
+
+    padding: 30px;
+
+    margin-bottom: 42px;
+
+    box-shadow: var(--sombra);
+}
+
+
+/* ============================================================
+   TÍTULO DEL FORMULARIO
+   ============================================================ */
+
+.titulo-formulario {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 27px;
+
+    padding-bottom: 22px;
+
+    border-bottom: 1px solid #eef2f7;
+}
+
+.icono-formulario {
+    width: 46px;
+    height: 46px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background:
+            linear-gradient(
+                    135deg,
+                    var(--primario),
+                    #6366f1
+            );
+
+    color: white;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    box-shadow:
+            0 7px 16px rgba(79, 70, 229, 0.25);
+}
+
+.titulo-formulario h2 {
+    margin: 0 0 5px;
+
+    font-size: 21px;
+
+    color: var(--texto);
+}
+
+.titulo-formulario p {
+    margin: 0;
+
+    color: var(--texto-secundario);
+
+    font-size: 13px;
+}
+
+
+/* ============================================================
+   GRID FORMULARIO
+   ============================================================ */
+
+.grid-formulario {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 21px;
+}
+
+.campo-completo {
+    grid-column: 1 / -1;
+}
+
+
+/* ============================================================
+   CAMPOS
+   ============================================================ */
+
+.campo label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #334155;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.campo input,
+.campo textarea,
+.campo select {
+    width: 100%;
+
+    padding: 12px 13px;
+
+    border: 1px solid #d8dee8;
+
+    border-radius: 10px;
+
+    background-color: #fbfcfe;
+
+    color: var(--texto);
+
+    font-family: inherit;
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+            border-color 0.2s ease,
+            box-shadow 0.2s ease,
+            background-color 0.2s ease;
+}
+
+.campo input:hover,
+.campo textarea:hover,
+.campo select:hover {
+    border-color: #c4ccda;
+
+    background-color: white;
+}
+
+.campo input:focus,
+.campo textarea:focus,
+.campo select:focus {
+    border-color: var(--primario);
+
+    background-color: white;
+
+    box-shadow:
+            0 0 0 4px rgba(79, 70, 229, 0.10);
+}
+
+.campo textarea {
+    resize: vertical;
+
+    min-height: 105px;
+
+    line-height: 1.5;
+}
+
+.campo input::placeholder,
+.campo textarea::placeholder {
+    color: #a0a9b8;
+}
+
+
+/* ============================================================
+   ACCIONES FORMULARIO
+   ============================================================ */
+
+.acciones-formulario {
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 27px;
+
+    padding-top: 22px;
+
+    border-top: 1px solid #eef2f7;
+}
+
+.boton {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 43px;
+
+    padding: 10px 18px;
+
+    border-radius: 10px;
+
+    border: none;
+
+    font-family: inherit;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+            background-color 0.2s ease,
+            transform 0.15s ease,
+            box-shadow 0.2s ease;
+}
+
+.boton:active {
+    transform: scale(0.98);
+}
+
+.boton-principal {
+    background:
+            linear-gradient(
+                    135deg,
+                    var(--primario),
+                    #6366f1
+            );
+
+    color: white;
+
+    box-shadow:
+            0 5px 14px rgba(79, 70, 229, 0.22);
+}
+
+.boton-principal:hover {
+    background:
+            linear-gradient(
+                    135deg,
+                    var(--primario-hover),
+                    #4f46e5
+            );
+
+    box-shadow:
+            0 8px 20px rgba(79, 70, 229, 0.28);
+
+    transform: translateY(-1px);
+}
+
+.boton-secundario {
+    background-color: #f1f5f9;
+
+    color: #475569;
+
+    border: 1px solid #e2e8f0;
+}
+
+.boton-secundario:hover {
+    background-color: #e2e8f0;
+
+    color: #334155;
+}
+
+
+/* ============================================================
+   LISTA DE TAREAS
+   ============================================================ */
+
+.titulo-lista {
+    margin-bottom: 21px;
+}
+
+.titulo-lista h2 {
+    margin: 0 0 5px;
+
+    font-size: 25px;
+    letter-spacing: -0.4px;
+
+    color: var(--texto);
+}
+
+.titulo-lista p {
+    margin: 0;
+
+    color: var(--texto-secundario);
+
+    font-size: 14px;
+}
+
+
+/* ============================================================
+   GRID DE TARJETAS
+   ============================================================ */
+
+.grid-tareas {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 22px;
+}
+
+
+/* ============================================================
+   TARJETA
+   ============================================================ */
+
+.tarea {
+    position: relative;
+
+    background-color: var(--blanco);
+
+    border: 1px solid var(--borde);
+
+    border-radius: 16px;
+
+    padding: 23px;
+
+    box-shadow:
+            0 5px 18px rgba(15, 23, 42, 0.055);
+
+    transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease,
+            border-color 0.2s ease;
+
+    overflow: hidden;
+}
+
+.tarea::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 4px;
+
+    background:
+            linear-gradient(
+                    90deg,
+                    var(--primario),
+                    #818cf8
+            );
+}
+
+.tarea:hover {
+    transform: translateY(-4px);
+
+    border-color: #c7d2fe;
+
+    box-shadow: var(--sombra-hover);
+}
+
+
+/* ============================================================
+   CABECERA TARJETA
+   ============================================================ */
+
+.tarea-cabecera {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 15px;
+
+    margin-bottom: 12px;
+}
+
+.tarea-cabecera h3 {
+    margin: 0;
+
+    font-size: 19px;
+    line-height: 1.35;
+
+    letter-spacing: -0.2px;
+
+    color: var(--texto);
+
+    word-break: break-word;
+}
+
+
+/* ============================================================
+   BOTONES EDITAR / ELIMINAR
+   ============================================================ */
+
+.acciones-tarea {
+    display: flex;
+
+    gap: 6px;
+
+    flex-shrink: 0;
+}
+
+.acciones-tarea form {
+    margin: 0;
+}
+
+.boton-icono {
+    width: 35px;
+    height: 35px;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #f8fafc;
+
+    color: #64748b;
+
+    font-size: 15px;
+
+    transition:
+            background-color 0.2s ease,
+            color 0.2s ease,
+            border-color 0.2s ease,
+            transform 0.15s ease;
+}
+
+.boton-icono:hover {
+    transform: translateY(-1px);
+}
+
+.boton-icono.editar:hover {
+    background-color: var(--primario-suave);
+
+    border-color: #c7d2fe;
+
+    color: var(--primario);
+}
+
+.boton-icono.eliminar:hover {
+    background-color: var(--rojo-suave);
+
+    border-color: #fecaca;
+
+    color: var(--rojo);
+}
+
+
+/* ============================================================
+   DESCRIPCIÓN
+   ============================================================ */
+
+.descripcion-tarea {
+    margin: 0 0 18px;
+
+    color: var(--texto-secundario);
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    min-height: 22px;
+
+    word-break: break-word;
+}
+
+
+/* ============================================================
+   BADGES
+   ============================================================ */
+
+.badges {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin-bottom: 20px;
+}
+
+.badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.2px;
+
+    text-transform: capitalize;
+}
+
+
+/* ============================================================
+   PRIORIDADES
+   ============================================================ */
+
+.prioridad-alta {
+    background-color: var(--rojo-suave);
+
+    color: var(--rojo);
+
+    border: 1px solid #fecaca;
+}
+
+.prioridad-media {
+    background-color: var(--amarillo-suave);
+
+    color: var(--amarillo);
+
+    border: 1px solid #fde68a;
+}
+
+.prioridad-baja {
+    background-color: var(--verde-suave);
+
+    color: var(--verde);
+
+    border: 1px solid #bbf7d0;
+}
+
+
+/* ============================================================
+   ESTADOS
+   ============================================================ */
+
+.estado-pendiente {
+    background-color: #f1f5f9;
+
+    color: #64748b;
+
+    border: 1px solid #e2e8f0;
+}
+
+.estado-en_progreso {
+    background-color: var(--azul-suave);
+
+    color: var(--azul);
+
+    border: 1px solid #bfdbfe;
+}
+
+.estado-completada {
+    background-color: var(--verde-suave);
+
+    color: var(--verde);
+
+    border: 1px solid #bbf7d0;
+}
+
+.estado-vencida {
+    background-color: var(--rojo-suave);
+
+    color: var(--rojo);
+
+    border: 1px solid #fecaca;
+}
+
+
+/* ============================================================
+   INFORMACIÓN DE LA TAREA
+   ============================================================ */
+
+.informacion-tarea {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 12px;
+
+    padding: 16px 0;
+
+    border-top: 1px solid #eef2f7;
+
+    border-bottom: 1px solid #eef2f7;
+}
+
+.dato-tarea {
+    min-width: 0;
+
+    padding: 9px 10px;
+
+    border-radius: 9px;
+
+    background-color: #f8fafc;
+}
+
+.dato-label {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #94a3b8;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+}
+
+.dato-valor {
+    display: block;
+
+    color: #334155;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    word-break: break-word;
+}
+
+
+/* ============================================================
+   PROGRESO
+   ============================================================ */
+
+.progreso {
+    margin-top: 21px;
+}
+
+.progreso-cabecera {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 8px;
+
+    font-size: 13px;
+
+    color: var(--texto-secundario);
+}
+
+.progreso-cabecera strong {
+    color: var(--primario);
+
+    font-size: 13px;
+}
+
+.barra-progreso {
+    width: 100%;
+
+    height: 9px;
+
+    background-color: #e9edf5;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.barra-progreso-valor {
+    height: 100%;
+
+    min-width: 0;
+
+    background:
+            linear-gradient(
+                    90deg,
+                    var(--primario),
+                    #818cf8
+            );
+
+    border-radius: 20px;
+
+    transition: width 0.4s ease;
+}
+
+
+/* ============================================================
+   SUBTAREAS
+   ============================================================ */
+
+.subtareas {
+    margin-top: 20px;
+
+    padding: 15px;
+
+    background-color: #f8faff;
+
+    border: 1px solid #e8edff;
+
+    border-radius: 11px;
+}
+
+.seccion-tarea-titulo {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 10px;
+
+    color: #334155;
+
+    font-size: 13px;
+}
+
+.seccion-tarea-titulo span {
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 7px;
+
+    background-color: var(--primario-suave);
+
+    color: var(--primario);
+
+    font-size: 12px;
+}
+
+.lista-subtareas {
+    list-style: none;
+
+    padding: 0;
+
+    margin: 0;
+}
+
+.subtarea {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 7px 0;
+
+    font-size: 13px;
+
+    color: #475569;
+
+    border-bottom: 1px solid #eef2f7;
+}
+
+.subtarea:last-child {
+    border-bottom: none;
+}
+
+.subtarea form {
+    margin: 0;
+
+    display: flex;
+}
+
+.subtarea input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+
+    cursor: pointer;
+
+    accent-color: var(--primario);
+}
+
+.completada {
+    text-decoration: line-through;
+
+    color: #94a3b8;
+}
+
+.sin-datos {
+    margin: 0;
+
+    color: #94a3b8;
+
+    font-size: 13px;
+}
+
+
+/* ============================================================
+   RECORDATORIOS
+   ============================================================ */
+
+.recordatorios {
+    margin-top: 15px;
+
+    padding: 15px;
+
+    background-color: #fffbeb;
+
+    border: 1px solid #fde68a;
+
+    border-radius: 11px;
+}
+
+.recordatorios .seccion-tarea-titulo span {
+    background-color: #fef3c7;
+
+    color: #d97706;
+}
+
+.recordatorios ul {
+    margin: 0;
+
+    padding-left: 20px;
+}
+
+.recordatorios li {
+    margin-bottom: 8px;
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+.recordatorios li:last-child {
+    margin-bottom: 0;
+}
+
+.recordatorios li strong {
+    color: #92400e;
+
+    margin-right: 5px;
+}
+
+
+/* ============================================================
+   SIN TAREAS
+   ============================================================ */
+
+.sin-tareas {
+    background-color: white;
+
+    border: 1px solid var(--borde);
+
+    border-radius: 18px;
+
+    padding: 75px 25px;
+
+    text-align: center;
+
+    box-shadow: var(--sombra);
+}
+
+.sin-tareas-icono {
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 17px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    background:
+            linear-gradient(
+                    135deg,
+                    var(--primario-suave),
+                    #e0e7ff
+            );
+
+    color: var(--primario);
+
+    font-size: 27px;
+
+    font-weight: 800;
+}
+
+.sin-tareas h3 {
+    margin: 0 0 8px;
+
+    font-size: 20px;
+
+    color: var(--texto);
+}
+
+.sin-tareas p {
+    margin: 0;
+
+    color: var(--texto-secundario);
+
+    font-size: 14px;
+}
+
+
+/* ============================================================
+   RESPONSIVE - TABLET
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+    .grid-tareas {
+        grid-template-columns: 1fr;
+    }
+
+    .informacion-tarea {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+}
+
+
+/* ============================================================
+   RESPONSIVE - MÓVIL
+   ============================================================ */
+
+@media (max-width: 680px) {
+
+    .barra-contenido {
+        padding: 13px 17px;
+    }
+
+    .texto-tareas {
+        display: none;
+    }
+
+    .contenedor-principal {
+        padding: 28px 15px 45px;
+    }
+
+    .encabezado-pagina {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 17px;
+    }
+
+    .encabezado-pagina h1 {
+        font-size: 30px;
+    }
+
+    .contador-tareas {
+        align-self: flex-start;
+    }
+
+    .formulario-tarea {
+        padding: 22px 18px;
+
+        border-radius: 15px;
+    }
+
+    .grid-formulario {
+        grid-template-columns: 1fr;
+    }
+
+    .campo-completo {
+        grid-column: auto;
+    }
+
+    .acciones-formulario {
+        flex-direction: column;
+    }
+
+    .boton {
+        width: 100%;
+    }
+
+    .informacion-tarea {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ============================================================
+   RESPONSIVE - MÓVIL PEQUEÑO
+   ============================================================ */
+
+@media (max-width: 430px) {
+
+    .barra-contenido {
+        padding: 12px 13px;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    .logo-icono {
+        width: 34px;
+        height: 34px;
+    }
+
+    .boton-salir {
+        padding: 8px 10px;
+
+        font-size: 12px;
+    }
+
+    .encabezado-pagina h1 {
+        font-size: 27px;
+    }
+
+    .formulario-tarea {
+        padding: 19px 15px;
+    }
+
+    .titulo-formulario {
+        gap: 11px;
+    }
+
+    .icono-formulario {
+        width: 42px;
+        height: 42px;
+    }
+
+    .tarea {
+        padding: 19px 17px;
+    }
+
+    .tarea-cabecera h3 {
+        font-size: 17px;
+    }
+
+    .boton-icono {
+        width: 32px;
+        height: 32px;
+    }
+
+    body {
+        background: red !important;
+    }
+}

@@ -51,4 +51,22 @@ public class SubTaskController {
 
         subTaskService.eliminarSubTask(id);
     }
+
+    public void cambiarEstadoCompletada(int id) {
+
+        SubTask subTask =
+                subTaskService.buscarSubTaskPorId(id);
+
+        if (subTask == null) {
+            throw new IllegalArgumentException(
+                    "No existe una subtarea con ese ID"
+            );
+        }
+
+        subTask.setCompletada(
+                !subTask.isCompletada()
+        );
+
+        subTaskService.actualizarSubTask(subTask);
+    }
 }

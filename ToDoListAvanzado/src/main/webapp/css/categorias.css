@@ -1,0 +1,721 @@
+
+    /* ============================================================
+       VARIABLES / PALETA
+       ============================================================ */
+
+:root {
+    --primario: #4f46e5;
+    --primario-hover: #4338ca;
+    --primario-suave: #eef2ff;
+
+    --fondo: #f5f7fb;
+    --blanco: #ffffff;
+
+    --texto: #172033;
+    --texto-secundario: #64748b;
+    --texto-suave: #94a3b8;
+
+    --borde: #e2e8f0;
+
+    --rojo: #dc2626;
+    --rojo-suave: #fef2f2;
+
+    --sombra: 0 8px 25px rgba(15, 23, 42, 0.07);
+    --sombra-hover: 0 14px 35px rgba(15, 23, 42, 0.12);
+
+    --radio: 14px;
+}
+
+
+/* ============================================================
+   RESET
+   ============================================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+
+    font-family:
+            Inter,
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            Arial,
+            Helvetica,
+            sans-serif;
+
+    background:
+            radial-gradient(
+                    circle at top left,
+                    #eef2ff 0,
+                    transparent 32%
+            ),
+            var(--fondo);
+
+    color: var(--texto);
+
+    min-height: 100vh;
+}
+
+
+/* ============================================================
+   SELECCIÓN DE TEXTO
+   ============================================================ */
+
+::selection {
+    background-color: #c7d2fe;
+    color: #1e1b4b;
+}
+
+
+/* ============================================================
+   ENCABEZADO PRINCIPAL
+   ============================================================ */
+
+body > h1 {
+    width: 100%;
+    max-width: 1250px;
+
+    margin: 0 auto;
+
+    padding: 42px 28px 0;
+
+    font-size: 36px;
+    line-height: 1.1;
+
+    letter-spacing: -1px;
+
+    color: var(--texto);
+}
+
+
+/* ============================================================
+   FORMULARIO DE CATEGORÍA
+   ============================================================ */
+
+.formulario-categoria {
+    width: 100%;
+    max-width: 1250px;
+
+    margin: 30px auto 42px;
+
+    padding: 30px;
+
+    background-color: var(--blanco);
+
+    border: 1px solid var(--borde);
+
+    border-radius: 18px;
+
+    box-shadow: var(--sombra);
+}
+
+
+/* ============================================================
+   TÍTULO DEL FORMULARIO
+   ============================================================ */
+
+.formulario-categoria h2 {
+    margin: 0 0 27px;
+
+    padding-bottom: 22px;
+
+    border-bottom: 1px solid #eef2f7;
+
+    font-size: 21px;
+
+    color: var(--texto);
+}
+
+
+/* ============================================================
+   FORMULARIO
+   ============================================================ */
+
+.formulario-categoria form {
+    display: grid;
+
+    grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    gap: 21px;
+}
+
+
+/* ============================================================
+   CAMPOS
+   ============================================================ */
+
+.campo {
+    min-width: 0;
+}
+
+.campo label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #334155;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.campo input {
+    width: 100%;
+
+    padding: 12px 13px;
+
+    border: 1px solid #d8dee8;
+
+    border-radius: 10px;
+
+    background-color: #fbfcfe;
+
+    color: var(--texto);
+
+    font-family: inherit;
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+            border-color 0.2s ease,
+            box-shadow 0.2s ease,
+            background-color 0.2s ease;
+}
+
+.campo input:hover {
+    border-color: #c4ccda;
+
+    background-color: white;
+}
+
+.campo input:focus {
+    border-color: var(--primario);
+
+    background-color: white;
+
+    box-shadow:
+            0 0 0 4px rgba(79, 70, 229, 0.10);
+}
+
+.campo input::placeholder {
+    color: #a0a9b8;
+}
+
+
+/* ============================================================
+   BOTONES DEL FORMULARIO
+   ============================================================ */
+
+.formulario-categoria button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 43px;
+
+    padding: 10px 18px;
+
+    border-radius: 10px;
+
+    border: none;
+
+    background:
+            linear-gradient(
+                    135deg,
+                    var(--primario),
+                    #6366f1
+            );
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+            0 5px 14px rgba(79, 70, 229, 0.22);
+
+    transition:
+            background-color 0.2s ease,
+            transform 0.15s ease,
+            box-shadow 0.2s ease;
+}
+
+.formulario-categoria button:hover {
+    background:
+            linear-gradient(
+                    135deg,
+                    var(--primario-hover),
+                    #4f46e5
+            );
+
+    box-shadow:
+            0 8px 20px rgba(79, 70, 229, 0.28);
+
+    transform: translateY(-1px);
+}
+
+.formulario-categoria button:active {
+    transform: scale(0.98);
+}
+
+
+/* ============================================================
+   BOTÓN CANCELAR
+   ============================================================ */
+
+.formulario-categoria a {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 43px;
+
+    padding: 10px 18px;
+
+    border-radius: 10px;
+
+    border: 1px solid #e2e8f0;
+
+    background-color: #f1f5f9;
+
+    color: #475569;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition:
+            background-color 0.2s ease,
+            color 0.2s ease,
+            transform 0.15s ease;
+}
+
+.formulario-categoria a:hover {
+    background-color: #e2e8f0;
+
+    color: #334155;
+
+    transform: translateY(-1px);
+}
+
+
+/* ============================================================
+   LISTA DE CATEGORÍAS
+   ============================================================ */
+
+.lista-categorias {
+    width: 100%;
+    max-width: 1250px;
+
+    margin: 0 auto;
+
+    padding: 0 28px 70px;
+}
+
+
+/* ============================================================
+   TÍTULO LISTA
+   ============================================================ */
+
+.lista-categorias > h2 {
+    margin: 0 0 21px;
+
+    font-size: 25px;
+
+    letter-spacing: -0.4px;
+
+    color: var(--texto);
+}
+
+
+/* ============================================================
+   MENSAJE SIN CATEGORÍAS
+   ============================================================ */
+
+.lista-categorias > p {
+    margin: 0;
+
+    padding: 60px 25px;
+
+    background-color: var(--blanco);
+
+    border: 1px solid var(--borde);
+
+    border-radius: 18px;
+
+    box-shadow: var(--sombra);
+
+    text-align: center;
+
+    color: var(--texto-secundario);
+
+    font-size: 14px;
+}
+
+
+/* ============================================================
+   GRID DE CATEGORÍAS
+   ============================================================ */
+
+.categorias {
+    display: grid;
+
+    grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    gap: 22px;
+}
+
+
+/* ============================================================
+   TARJETA CATEGORÍA
+   ============================================================ */
+
+.categoria {
+    position: relative;
+
+    background-color: var(--blanco);
+
+    border: 1px solid var(--borde);
+
+    border-radius: 16px;
+
+    padding: 23px;
+
+    box-shadow:
+            0 5px 18px rgba(15, 23, 42, 0.055);
+
+    overflow: hidden;
+
+    transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease,
+            border-color 0.2s ease;
+}
+
+
+/* ============================================================
+   LÍNEA SUPERIOR DE LA TARJETA
+   ============================================================ */
+
+.categoria::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 4px;
+
+    background:
+            linear-gradient(
+                    90deg,
+                    var(--primario),
+                    #818cf8
+            );
+}
+
+
+/* ============================================================
+   HOVER TARJETA
+   ============================================================ */
+
+.categoria:hover {
+    transform: translateY(-4px);
+
+    border-color: #c7d2fe;
+
+    box-shadow: var(--sombra-hover);
+}
+
+
+/* ============================================================
+   TÍTULO CATEGORÍA
+   ============================================================ */
+
+.categoria h3 {
+    margin: 0 0 18px;
+
+    font-size: 20px;
+
+    line-height: 1.35;
+
+    letter-spacing: -0.2px;
+
+    color: var(--texto);
+
+    word-break: break-word;
+}
+
+
+/* ============================================================
+   INFORMACIÓN DE CATEGORÍA
+   ============================================================ */
+
+.categoria > p {
+    margin: 0 0 10px;
+
+    padding: 10px 11px;
+
+    border-radius: 9px;
+
+    background-color: #f8fafc;
+
+    color: var(--texto-secundario);
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+.categoria > p:last-of-type {
+    margin-bottom: 20px;
+}
+
+.categoria > p strong {
+    color: #334155;
+
+    font-weight: 700;
+}
+
+
+/* ============================================================
+   ACCIONES
+   ============================================================ */
+
+.acciones {
+    display: flex;
+
+    gap: 8px;
+
+    padding-top: 17px;
+
+    border-top: 1px solid #eef2f7;
+}
+
+
+/*
+   El JSP utiliza style="display:inline;" en los forms.
+   Aquí mantenemos su comportamiento y organizamos los botones.
+*/
+
+.acciones form {
+    margin: 0;
+}
+
+
+/* ============================================================
+   BOTONES DE ACCIÓN
+   ============================================================ */
+
+.acciones button {
+    min-height: 37px;
+
+    padding: 8px 14px;
+
+    border-radius: 9px;
+
+    border: 1px solid #e2e8f0;
+
+    background-color: #f8fafc;
+
+    color: #64748b;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+            background-color 0.2s ease,
+            color 0.2s ease,
+            border-color 0.2s ease,
+            transform 0.15s ease;
+}
+
+.acciones button:hover {
+    transform: translateY(-1px);
+}
+
+
+/* ============================================================
+   BOTÓN EDITAR
+   ============================================================ */
+
+.acciones form:first-child button:hover {
+    background-color: var(--primario-suave);
+
+    border-color: #c7d2fe;
+
+    color: var(--primario);
+}
+
+
+/* ============================================================
+   BOTÓN ELIMINAR
+   ============================================================ */
+
+.acciones form:last-child button:hover {
+    background-color: var(--rojo-suave);
+
+    border-color: #fecaca;
+
+    color: var(--rojo);
+}
+
+
+/* ============================================================
+   RESPONSIVE - TABLET
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+    .categorias {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ============================================================
+   RESPONSIVE - MÓVIL
+   ============================================================ */
+
+@media (max-width: 680px) {
+
+    body > h1 {
+        padding:
+                28px
+                15px
+                0;
+
+        font-size: 30px;
+    }
+
+
+    .formulario-categoria {
+        margin-top: 25px;
+
+        padding: 22px 18px;
+
+        border-radius: 15px;
+    }
+
+
+    .formulario-categoria form {
+        grid-template-columns: 1fr;
+    }
+
+
+    .lista-categorias {
+        padding:
+                0
+                15px
+                45px;
+    }
+
+
+    .lista-categorias > h2 {
+        font-size: 23px;
+    }
+
+
+    .categoria {
+        padding: 19px 17px;
+    }
+
+
+    .acciones {
+        flex-direction: column;
+    }
+
+
+    .acciones form {
+        width: 100%;
+    }
+
+
+    .acciones button {
+        width: 100%;
+    }
+
+
+    .formulario-categoria button,
+    .formulario-categoria a {
+        width: 100%;
+    }
+}
+
+
+/* ============================================================
+   RESPONSIVE - MÓVIL PEQUEÑO
+   ============================================================ */
+
+@media (max-width: 430px) {
+
+    body > h1 {
+        padding:
+                25px
+                13px
+                0;
+
+        font-size: 27px;
+    }
+
+
+    .formulario-categoria {
+        margin-top: 22px;
+
+        padding: 19px 15px;
+    }
+
+
+    .formulario-categoria h2 {
+        font-size: 19px;
+    }
+
+
+    .lista-categorias {
+        padding:
+                0
+                13px
+                40px;
+    }
+
+
+    .lista-categorias > h2 {
+        font-size: 21px;
+    }
+
+
+    .categoria {
+        padding: 18px 15px;
+    }
+
+
+    .categoria h3 {
+        font-size: 18px;
+    }
+}
+

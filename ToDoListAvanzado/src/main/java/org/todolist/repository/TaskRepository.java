@@ -1,3 +1,4 @@
+
 package org.todolist.repository;
 
 import org.todolist.model.Task;
@@ -10,235 +11,489 @@ import java.util.List;
 
 public class TaskRepository {
 
+    private final TaskTagRepository taskTagRepository;
 
 
-    ///---Guardar Tarea---///
+
+    /// CONSTRUCTOR
+
+
+    public TaskRepository() {
+
+        this.taskTagRepository =
+                new TaskTagRepository();
+    }
+
+
+
+    /// GUARDAR TAREA
+
+
     public void guardar(Task task) {
 
         String sql = """
-                INSERT INTO tareas
-                (titulo, fecha_creacion, fecha_limite, prioridad,
-                 estado, progreso, id_usuario, id_categoria)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-                """;
+            INSERT INTO tareas
+            (titulo, descripcion, fecha_creacion, fecha_limite,
+             prioridad, estado, progreso, id_usuario, id_categoria)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """;
 
-        try (Connection conexion = DatabaseConnection.conectar();
-             PreparedStatement statement = conexion.prepareStatement(sql)) {
+        try (Connection conexion =
+                     DatabaseConnection.conectar();
 
-            statement.setString(1, task.getTitulo());
+             PreparedStatement statement =
+                     conexion.prepareStatement(sql)) {
 
-            statement.setDate(
-                    2,
-                    Date.valueOf(task.getFechaCreacion())
-            );
-
-            if (task.getFechaLimite() != null) {
-                statement.setDate(
-                        3,
-                        Date.valueOf(task.getFechaLimite())
-                );
-            } else {
-                statement.setNull(3, Types.DATE);
-            }
 
             statement.setString(
-                    4,
-                    task.getPrioridad().name()
+                    1,
+                    task.getTitulo()
             );
+
+
+            statement.setString(
+                    2,
+                    task.getDescripcion()
+            );
+
+
+            statement.setDate(
+                    3,
+                    Date.valueOf(
+                            task.getFechaCreacion()
+                    )
+            );
+
+
+            if (task.getFechaLimite() != null) {
+
+                statement.setDate(
+                        4,
+                        Date.valueOf(
+                                task.getFechaLimite()
+                        )
+                );
+
+            } else {
+
+                statement.setNull(
+                        4,
+                        Types.DATE
+                );
+            }
+
 
             statement.setString(
                     5,
+                    task.getPrioridad().name()
+            );
+
+
+            statement.setString(
+                    6,
                     task.getEstado().name()
             );
 
-            statement.setInt(
-                    6,
-                    task.getProgreso()
-            );
 
             statement.setInt(
                     7,
-                    task.getIdUsuario()
+                    task.getProgreso()
             );
+
 
             statement.setInt(
                     8,
-                    task.getIdCategoria()
+                    task.getIdUsuario()
             );
+
+
+            if (task.getIdCategoria() != null) {
+
+                statement.setInt(
+                        9,
+                        task.getIdCategoria()
+                );
+
+            } else {
+
+                statement.setNull(
+                        9,
+                        Types.INTEGER
+                );
+            }
+
 
             statement.executeUpdate();
 
-            System.out.println("Tarea guardada correctamente.");
+
+            System.out.println(
+                    "Tarea guardada correctamente."
+            );
+
 
         } catch (SQLException e) {
+
             e.printStackTrace();
         }
     }
 
 
 
-    ///---Obtener todas las tareas ---///
+    /// OBTENER TODAS LAS TAREAS
+
+
     public List<Task> obtenerTodas() {
 
-        List<Task> tareas = new ArrayList<>();
+        List<Task> tareas =
+                new ArrayList<>();
 
-        String sql = "SELECT * FROM tareas";
 
-        try (Connection conexion = DatabaseConnection.conectar();
-             PreparedStatement statement = conexion.prepareStatement(sql);
-             ResultSet resultado = statement.executeQuery()) {
+        String sql =
+                "SELECT * FROM tareas";
+
+
+        try (Connection conexion =
+                     DatabaseConnection.conectar();
+
+             PreparedStatement statement =
+                     conexion.prepareStatement(sql);
+
+             ResultSet resultado =
+                     statement.executeQuery()) {
+
 
             while (resultado.next()) {
 
-                Task task = convertirTask(resultado);
+                Task task =
+                        convertirTask(resultado);
 
                 tareas.add(task);
             }
 
+
         } catch (SQLException e) {
+
             e.printStackTrace();
         }
+
 
         return tareas;
     }
 
 
 
-    ///---Buscar tareas por id---///
-    public Task buscarPorId(int id) {
+    /// OBTENER TAREAS POR USUARIO
 
-        String sql = "SELECT * FROM tareas WHERE id_tarea = ?";
 
-        try (Connection conexion = DatabaseConnection.conectar();
-             PreparedStatement statement = conexion.prepareStatement(sql)) {
+    public List<Task> obtenerPorUsuario(
+            int idUsuario) {
 
-            statement.setInt(1, id);
+        List<Task> tareas =
+                new ArrayList<>();
 
-            try (ResultSet resultado = statement.executeQuery()) {
 
-                if (resultado.next()) {
+        String sql =
+                "SELECT * FROM tareas WHERE id_usuario = ?";
 
-                    return convertirTask(resultado);
+
+        try (Connection conexion =
+                     DatabaseConnection.conectar();
+
+             PreparedStatement statement =
+                     conexion.prepareStatement(sql)) {
+
+
+            statement.setInt(
+                    1,
+                    idUsuario
+            );
+
+
+            try (ResultSet resultado =
+                         statement.executeQuery()) {
+
+
+                while (resultado.next()) {
+
+                    Task task =
+                            convertirTask(resultado);
+
+                    tareas.add(task);
                 }
             }
 
+
         } catch (SQLException e) {
+
             e.printStackTrace();
         }
+
+
+        return tareas;
+    }
+
+
+
+    /// BUSCAR TAREA POR ID
+
+
+    public Task buscarPorId(int id) {
+
+        String sql =
+                "SELECT * FROM tareas WHERE id_tarea = ?";
+
+
+        try (Connection conexion =
+                     DatabaseConnection.conectar();
+
+             PreparedStatement statement =
+                     conexion.prepareStatement(sql)) {
+
+
+            statement.setInt(
+                    1,
+                    id
+            );
+
+
+            try (ResultSet resultado =
+                         statement.executeQuery()) {
+
+
+                if (resultado.next()) {
+
+                    return convertirTask(
+                            resultado
+                    );
+                }
+            }
+
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+
 
         return null;
     }
 
 
 
-    ///---Actualizar tarea---///
+    ///ACTUALIZAR TAREA
+
+
     public void actualizar(Task task) {
 
         String sql = """
-                UPDATE tareas
-                SET titulo = ?,
-                    fecha_limite = ?,
-                    prioridad = ?,
-                    estado = ?,
-                    progreso = ?,
-                    id_usuario = ?,
-                    id_categoria = ?
-                WHERE id_tarea = ?
-                """;
+            UPDATE tareas
+            SET titulo = ?,
+                descripcion = ?,
+                fecha_limite = ?,
+                prioridad = ?,
+                estado = ?,
+                progreso = ?,
+                id_usuario = ?,
+                id_categoria = ?
+            WHERE id_tarea = ?
+            """;
 
-        try (Connection conexion = DatabaseConnection.conectar();
-             PreparedStatement statement = conexion.prepareStatement(sql)) {
 
-            statement.setString(1, task.getTitulo());
+        try (Connection conexion =
+                     DatabaseConnection.conectar();
+
+             PreparedStatement statement =
+                     conexion.prepareStatement(sql)) {
+
+
+            statement.setString(
+                    1,
+                    task.getTitulo()
+            );
+
+
+            statement.setString(
+                    2,
+                    task.getDescripcion()
+            );
+
 
             if (task.getFechaLimite() != null) {
 
                 statement.setDate(
-                        2,
-                        Date.valueOf(task.getFechaLimite())
+                        3,
+                        Date.valueOf(
+                                task.getFechaLimite()
+                        )
                 );
 
             } else {
 
-                statement.setNull(2, Types.DATE);
+                statement.setNull(
+                        3,
+                        Types.DATE
+                );
             }
 
-            statement.setString(
-                    3,
-                    task.getPrioridad().name()
-            );
 
             statement.setString(
                     4,
+                    task.getPrioridad().name()
+            );
+
+
+            statement.setString(
+                    5,
                     task.getEstado().name()
             );
 
-            statement.setInt(
-                    5,
-                    task.getProgreso()
-            );
 
             statement.setInt(
                     6,
-                    task.getIdUsuario()
+                    task.getProgreso()
             );
+
 
             statement.setInt(
                     7,
-                    task.getIdCategoria()
+                    task.getIdUsuario()
             );
 
+
+            if (task.getIdCategoria() != null) {
+
+                statement.setInt(
+                        8,
+                        task.getIdCategoria()
+                );
+
+            } else {
+
+                statement.setNull(
+                        8,
+                        Types.INTEGER
+                );
+            }
+
+
             statement.setInt(
-                    8,
+                    9,
                     task.getId()
             );
 
+
             statement.executeUpdate();
 
-            System.out.println("Tarea actualizada correctamente.");
+
+            System.out.println(
+                    "Tarea actualizada correctamente."
+            );
+
 
         } catch (SQLException e) {
+
             e.printStackTrace();
         }
     }
 
 
 
-    ///---Eliminar tarea---///
+    /// ELIMINAR TAREA
+
+
     public void eliminar(int id) {
 
-        String sql = "DELETE FROM tareas WHERE id_tarea = ?";
+        taskTagRepository
+                .eliminarTodasLasEtiquetas(id);
 
-        try (Connection conexion = DatabaseConnection.conectar();
 
-             PreparedStatement statement = conexion.prepareStatement(sql)) {
+        String sql =
+                "DELETE FROM tareas WHERE id_tarea = ?";
 
-            statement.setInt(1, id);
+
+        try (Connection conexion =
+                     DatabaseConnection.conectar();
+
+             PreparedStatement statement =
+                     conexion.prepareStatement(sql)) {
+
+
+            statement.setInt(
+                    1,
+                    id
+            );
+
+
             statement.executeUpdate();
-            System.out.println("Tarea eliminada correctamente.");
+
+
+            System.out.println(
+                    "Tarea eliminada correctamente."
+            );
+
 
         } catch (SQLException e) {
+
             e.printStackTrace();
         }
     }
 
 
 
-    ///---Convertir el registro de la BD en un objeto tarea---///
-    private Task convertirTask(ResultSet resultado) throws SQLException {
+    /// CONVERTIR REGISTRO DE BD -> OBJETO TASK
 
-        Task task = new Task();
+
+    private Task convertirTask(
+            ResultSet resultado)
+            throws SQLException {
+
+
+        Task task =
+                new Task();
+
+
+
+        /// ID
+
 
         task.setId(
-                resultado.getInt("id_tarea")
+                resultado.getInt(
+                        "id_tarea"
+                )
         );
+
+
+
+        /// TITULO
+
 
         task.setTitulo(
-                resultado.getString("titulo")
+                resultado.getString(
+                        "titulo"
+                )
         );
 
+
+
+        /// DESCRIPCION
+
+
+        task.setDescripcion(
+                resultado.getString(
+                        "descripcion"
+                )
+        );
+
+
+
+        /// FECHA DE CREACION
+
+
         Date fechaCreacion =
-                resultado.getDate("fecha_creacion");
+                resultado.getDate(
+                        "fecha_creacion"
+                );
+
 
         if (fechaCreacion != null) {
 
@@ -247,8 +502,16 @@ public class TaskRepository {
             );
         }
 
+
+
+        /// FECHA LIMITE
+
+
         Date fechaLimite =
-                resultado.getDate("fecha_limite");
+                resultado.getDate(
+                        "fecha_limite"
+                );
+
 
         if (fechaLimite != null) {
 
@@ -257,30 +520,94 @@ public class TaskRepository {
             );
         }
 
-        task.setPrioridad(
-                Prioridad.valueOf(
-                        resultado.getString("prioridad")
-                )
-        );
 
-        task.setEstado(
-                Estado.valueOf(
-                        resultado.getString("estado")
-                )
-        );
+
+        /// PRIORIDAD
+
+
+        String prioridad =
+                resultado.getString(
+                        "prioridad"
+                );
+
+
+        if (prioridad != null) {
+
+            task.setPrioridad(
+                    Prioridad.valueOf(
+                            prioridad
+                    )
+            );
+        }
+
+
+
+        /// ESTADO
+
+
+        String estado =
+                resultado.getString(
+                        "estado"
+                );
+
+
+        if (estado != null) {
+
+            task.setEstado(
+                    Estado.valueOf(
+                            estado
+                    )
+            );
+        }
+
+
+
+        ///PROGRESO
+
 
         task.setProgreso(
-                resultado.getInt("progreso")
+                resultado.getInt(
+                        "progreso"
+                )
         );
+
+
+
+        /// USUARIO
+
 
         task.setIdUsuario(
-                resultado.getInt("id_usuario")
+                resultado.getInt(
+                        "id_usuario"
+                )
         );
 
-        task.setIdCategoria(
-                resultado.getInt("id_categoria")
-        );
+
+
+        /// CATEGORIA
+
+
+        Object categoria =
+                resultado.getObject(
+                        "id_categoria"
+                );
+
+
+        if (categoria != null) {
+
+            task.setIdCategoria(
+                    ((Number) categoria).intValue()
+            );
+
+        } else {
+
+            task.setIdCategoria(
+                    null
+            );
+        }
+
 
         return task;
     }
 }
+
