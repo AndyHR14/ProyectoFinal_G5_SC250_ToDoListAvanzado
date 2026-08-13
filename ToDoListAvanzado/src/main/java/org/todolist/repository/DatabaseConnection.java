@@ -8,7 +8,7 @@ public class DatabaseConnection {
 
     // Base de datos que estamos utilizando actualmente
     private static final String URL =
-            "jdbc:mysql://localhost:3306/tododb";
+            "jdbc:mysql://localhost:3306/organizador_tareas";
 
     private static final String USER = "root";
 
