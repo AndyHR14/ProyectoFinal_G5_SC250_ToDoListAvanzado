@@ -18,7 +18,7 @@ import java.util.List;
 public class ReminderRepository {
 
     ///---Guardar Recordatorio---///
-    public void guardar(Reminder reminder) {
+    public int guardar(Reminder reminder) {
 
         String sql = """
                 INSERT INTO recordatorios
@@ -27,11 +27,17 @@ public class ReminderRepository {
                 """;
 
         try (Connection conexion = DatabaseConnection.conectar();
-             PreparedStatement statement = conexion.prepareStatement(sql)) {
+             PreparedStatement statement =
+                     conexion.prepareStatement(
+                             sql,
+                             Statement.RETURN_GENERATED_KEYS
+                     )) {
 
             statement.setTimestamp(
                     1,
-                    Timestamp.valueOf(reminder.getFechaHora())
+                    Timestamp.valueOf(
+                            reminder.getFechaHora()
+                    )
             );
 
             statement.setString(
@@ -51,12 +57,35 @@ public class ReminderRepository {
 
             statement.executeUpdate();
 
-            System.out.println("Recordatorio guardado correctamente.");
+            // Obtener ID generado por MySQL
+            try (ResultSet resultado =
+                         statement.getGeneratedKeys()) {
+
+                if (resultado.next()) {
+
+                    int idGenerado =
+                            resultado.getInt(1);
+
+                    // Guardar ID en el objeto
+                    reminder.setIdRecordatorio(
+                            idGenerado
+                    );
+
+                    System.out.println(
+                            "Recordatorio guardado correctamente."
+                    );
+
+                    return idGenerado;
+                }
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        return -1;
     }
+
 
 
 
@@ -184,6 +213,70 @@ public class ReminderRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    
+    
+    public void actualizarEstado(int idRecordatorio, boolean activo) {
+
+        String sql = """
+                UPDATE recordatorios
+                SET activo = ?
+                WHERE id_recordatorio = ?
+                """;
+
+        try (Connection conexion = DatabaseConnection.conectar();
+             PreparedStatement statement =
+                     conexion.prepareStatement(sql)) {
+
+            statement.setBoolean(1, activo);
+            statement.setInt(2, idRecordatorio);
+
+            statement.executeUpdate();
+
+            System.out.println(
+                    "Estado del recordatorio actualizado correctamente."
+            );
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+    }
+    
+    
+    
+    public List<Reminder> obtenerActivos() {
+
+        List<Reminder> recordatorios =
+                new ArrayList<>();
+
+        String sql = """
+                SELECT *
+                FROM recordatorios
+                WHERE activo = TRUE
+                ORDER BY fecha_hora
+                """;
+
+        try (Connection conexion = DatabaseConnection.conectar();
+             PreparedStatement statement =
+                     conexion.prepareStatement(sql);
+             ResultSet resultado =
+                     statement.executeQuery()) {
+
+            while (resultado.next()) {
+
+                recordatorios.add(
+                        convertirReminder(resultado)
+                );
+            }
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+
+        return recordatorios;
     }
 
 

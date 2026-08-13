@@ -8,6 +8,7 @@ package org.todolist.model;
  *
  * @author Alvm Tech
  */
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 public class TimeLog {
@@ -71,6 +72,59 @@ public class TimeLog {
 
     public void setIdTarea(int idTarea) {
         this.idTarea = idTarea;
+    }
+    
+    public void iniciarConteo() {
+
+        if (inicio != null && fin == null) {
+            throw new IllegalStateException(
+                    "El conteo ya está iniciado."
+            );
+        }
+
+        inicio = LocalDateTime.now();
+        fin = null;
+        duracionMinutos = 0;
+    }
+    
+    public void finalizarConteo() {
+
+        if (inicio == null) {
+            throw new IllegalStateException(
+                    "No se puede finalizar un conteo que no ha iniciado."
+            );
+        }
+
+        if (fin != null) {
+            throw new IllegalStateException(
+                    "El conteo ya ha finalizado."
+            );
+        }
+
+        fin = LocalDateTime.now();
+
+        calcularDuracion();
+    }
+    
+    public void calcularDuracion() {
+
+        if (inicio == null || fin == null) {
+            throw new IllegalStateException(
+                    "Se necesitan fecha de inicio y fecha de fin para calcular la duración."
+            );
+        }
+
+        long minutos = Duration.between(
+                inicio,
+                fin
+        ).toMinutes();
+
+        duracionMinutos = (int) minutos;
+    }
+    
+    public boolean estaActivo() {
+
+        return inicio != null && fin == null;
     }
 
     @Override

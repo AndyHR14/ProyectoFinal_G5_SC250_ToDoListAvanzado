@@ -52,5 +52,28 @@ public class ReminderController {
 
         reminderService.eliminarReminder(id);
     }
+    
+    
+    public void activarReminder(int idRecordatorio) {
+
+        reminderService.activarReminder(
+                idRecordatorio
+        );
+    }
+    
+    
+    public void desactivarReminder(int idRecordatorio) {
+
+        reminderService.desactivarReminder(
+                idRecordatorio
+        );
+    }
+    
+    
+    public List<Reminder> obtenerRecordatoriosActivos() {
+
+        return reminderService.obtenerRecordatoriosActivos();
+    }
+
 
 }

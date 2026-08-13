@@ -12,7 +12,6 @@ package org.todolist.service;
 import org.todolist.model.TimeLog;
 import org.todolist.repository.TimeLogRepository;
 
-import java.time.Duration;
 import java.util.List;
 
 public class TimeLogService {
@@ -28,15 +27,8 @@ public class TimeLogService {
 
         validarRegistro(registro);
 
-        // Si ya existe la fecha de fin, calcula automáticamente la duración
         if (registro.getFin() != null) {
-
-            long minutos = Duration.between(
-                    registro.getInicio(),
-                    registro.getFin()
-            ).toMinutes();
-
-            registro.setDuracionMinutos((int) minutos);
+            registro.calcularDuracion();
         }
 
         timeLogRepository.guardar(registro);
@@ -59,6 +51,19 @@ public class TimeLogService {
 
         return timeLogRepository.buscarPorId(id);
     }
+    
+    public TimeLog buscarRegistroActivoPorTarea(int idTarea) {
+
+        if (idTarea <= 0) {
+
+            throw new IllegalArgumentException(
+                    "El ID de la tarea debe ser mayor que 0"
+            );
+        }
+
+        return timeLogRepository.buscarRegistroActivoPorTarea(idTarea);
+    }
+
 
     // Actualizar registro
     public void actualizarRegistro(TimeLog registro) {
@@ -66,13 +71,7 @@ public class TimeLogService {
         validarRegistro(registro);
 
         if (registro.getFin() != null) {
-
-            long minutos = Duration.between(
-                    registro.getInicio(),
-                    registro.getFin()
-            ).toMinutes();
-
-            registro.setDuracionMinutos((int) minutos);
+            registro.calcularDuracion();
         }
 
         timeLogRepository.actualizar(registro);
@@ -96,6 +95,63 @@ public class TimeLogService {
         }
 
         timeLogRepository.eliminar(id);
+    }
+    
+    //Iniciar Conteo
+    public TimeLog iniciarConteo(int idTarea) {
+
+        if (idTarea <= 0) {
+            throw new IllegalArgumentException(
+                    "Debe asociarse a una tarea válida"
+            );
+        }
+
+        TimeLog registroActivo =
+                timeLogRepository.buscarRegistroActivoPorTarea(
+                        idTarea
+                );
+
+        if (registroActivo != null) {
+
+            throw new IllegalStateException(
+                    "La tarea ya tiene un conteo activo."
+            );
+        }
+
+        TimeLog registro = new TimeLog();
+
+        registro.setIdTarea(idTarea);
+
+        registro.iniciarConteo();
+
+        timeLogRepository.guardar(registro);
+
+        return registro;
+    }
+
+
+    
+    //Finalizar Conteo
+    public void finalizarConteo(int idRegistro) {
+
+        if (idRegistro <= 0) {
+            throw new IllegalArgumentException(
+                    "El ID debe ser mayor que 0"
+            );
+        }
+
+        TimeLog registro =
+                timeLogRepository.buscarPorId(idRegistro);
+
+        if (registro == null) {
+            throw new IllegalArgumentException(
+                    "No existe un registro con ese ID"
+            );
+        }
+
+        registro.finalizarConteo();
+
+        timeLogRepository.actualizar(registro);
     }
 
     // Validaciones

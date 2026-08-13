@@ -33,6 +33,12 @@ public class SubTaskController {
 
         return subTaskService.obtenerTodasLasSubTasks();
     }
+    
+    
+    public List<SubTask> obtenerSubTasksPorTarea(int idTarea) {
+
+        return subTaskService.obtenerSubTasksPorTarea(idTarea);
+    }
 
 
     public SubTask buscarSubTaskPorId(int id) {
@@ -51,4 +57,16 @@ public class SubTaskController {
 
         subTaskService.eliminarSubTask(id);
     }
+    
+    public void marcarComoCompletada(int idSubtarea) {
+
+        subTaskService.marcarComoCompletada(idSubtarea);
+    }
+
+
+    public void marcarComoPendiente(int idSubtarea) {
+
+        subTaskService.marcarComoPendiente(idSubtarea);
+    }
+
 }

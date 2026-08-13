@@ -85,6 +85,56 @@ public class ReminderService {
 
         reminderRepository.eliminar(id);
     }
+    
+    
+    public void activarReminder(int idRecordatorio) {
+
+        validarId(idRecordatorio);
+
+        Reminder reminder =
+                reminderRepository.buscarPorId(idRecordatorio);
+
+        if (reminder == null) {
+
+            throw new IllegalArgumentException(
+                    "No existe un recordatorio con ese ID"
+            );
+        }
+
+        reminderRepository.actualizarEstado(
+                idRecordatorio,
+                true
+        );
+    }
+    
+    
+    public void desactivarReminder(int idRecordatorio) {
+
+        validarId(idRecordatorio);
+
+        Reminder reminder =
+                reminderRepository.buscarPorId(idRecordatorio);
+
+        if (reminder == null) {
+
+            throw new IllegalArgumentException(
+                    "No existe un recordatorio con ese ID"
+            );
+        }
+
+        reminderRepository.actualizarEstado(
+                idRecordatorio,
+                false
+        );
+    }
+    
+    
+    
+    public List<Reminder> obtenerRecordatoriosActivos() {
+
+        return reminderRepository.obtenerActivos();
+    }
+
 
 
     ///---Validaciones---///
@@ -111,5 +161,16 @@ public class ReminderService {
             );
         }
     }
+    
+    private void validarId(int id) {
+
+        if (id <= 0) {
+
+            throw new IllegalArgumentException(
+                    "El ID debe ser mayor que 0"
+            );
+        }
+    }
+
 
 }

@@ -37,6 +37,19 @@ public class SubTaskService {
 
         return subTaskRepository.obtenerTodas();
     }
+    
+    public List<SubTask> obtenerSubTasksPorTarea(int idTarea) {
+
+        if (idTarea <= 0) {
+
+            throw new IllegalArgumentException(
+                    "El ID de la tarea debe ser mayor que 0"
+            );
+        }
+
+        return subTaskRepository.obtenerPorTarea(idTarea);
+    }
+
 
 
     ///---Buscar SubTarea por ID---///
@@ -79,6 +92,66 @@ public class SubTaskService {
         }
 
         subTaskRepository.eliminar(id);
+    }
+    
+    public void marcarComoCompletada(int idSubtarea) {
+
+        if (idSubtarea <= 0) {
+
+            throw new IllegalArgumentException(
+                    "El ID debe ser mayor que 0"
+            );
+        }
+
+        SubTask subTask =
+                subTaskRepository.buscarPorId(idSubtarea);
+
+        if (subTask == null) {
+
+            throw new IllegalArgumentException(
+                    "No existe una subtarea con ese ID"
+            );
+        }
+
+        if (subTask.isCompletada()) {
+
+            return;
+        }
+
+        subTaskRepository.actualizarEstado(
+                idSubtarea,
+                true
+        );
+    }
+    
+    public void marcarComoPendiente(int idSubtarea) {
+
+        if (idSubtarea <= 0) {
+
+            throw new IllegalArgumentException(
+                    "El ID debe ser mayor que 0"
+            );
+        }
+
+        SubTask subTask =
+                subTaskRepository.buscarPorId(idSubtarea);
+
+        if (subTask == null) {
+
+            throw new IllegalArgumentException(
+                    "No existe una subtarea con ese ID"
+            );
+        }
+
+        if (!subTask.isCompletada()) {
+
+            return;
+        }
+
+        subTaskRepository.actualizarEstado(
+                idSubtarea,
+                false
+        );
     }
 
 
