@@ -108,6 +108,11 @@
                     Recordatorios
                 </a>
 
+                <a href="${pageContext.request.contextPath}/timelog"
+                   class="acceso-rapido">
+                    Timelog
+                </a>
+
             </nav>
 
             <a

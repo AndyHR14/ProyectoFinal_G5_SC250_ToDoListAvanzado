@@ -1,0 +1,936 @@
+/* ============================================================
+   VARIABLES / PALETA
+   ============================================================ */
+
+:root {
+    --primario: #4f46e5;
+    --primario-hover: #4338ca;
+    --primario-suave: #eef2ff;
+
+    --fondo: #f5f7fb;
+    --blanco: #ffffff;
+
+    --texto: #172033;
+    --texto-secundario: #64748b;
+    --texto-suave: #94a3b8;
+
+    --borde: #e2e8f0;
+
+    --verde: #16a34a;
+    --verde-hover: #15803d;
+    --verde-suave: #f0fdf4;
+
+    --rojo: #dc2626;
+    --rojo-hover: #b91c1c;
+    --rojo-suave: #fef2f2;
+
+    --azul: #2563eb;
+    --azul-suave: #eff6ff;
+
+    --gris-suave: #f8fafc;
+
+    --sombra: 0 8px 25px rgba(15, 23, 42, 0.07);
+    --sombra-hover: 0 14px 35px rgba(15, 23, 42, 0.12);
+
+    --radio: 14px;
+}
+
+
+/* ============================================================
+   RESET
+   ============================================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+
+    font-family:
+            Inter,
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            Arial,
+            Helvetica,
+            sans-serif;
+
+    background:
+            radial-gradient(
+                    circle at top left,
+                    #eef2ff 0,
+                    transparent 32%
+            ),
+            var(--fondo);
+
+    color: var(--texto);
+
+    min-height: 100vh;
+}
+
+
+/* ============================================================
+   SELECCIÓN DE TEXTO
+   ============================================================ */
+
+::selection {
+    background-color: #c7d2fe;
+    color: #1e1b4b;
+}
+
+
+/* ============================================================
+   ENCABEZADO PRINCIPAL
+   ============================================================ */
+
+body > h1 {
+    width: 100%;
+    max-width: 1250px;
+
+    margin: 0 auto;
+
+    padding: 42px 28px 0;
+
+    font-size: 36px;
+    line-height: 1.1;
+
+    letter-spacing: -1px;
+
+    color: var(--texto);
+}
+
+
+/* ============================================================
+   FORMULARIO TIMELOG
+   ============================================================ */
+
+.formulario-timelog {
+    width: 100%;
+    max-width: 1250px;
+
+    margin: 30px auto 42px;
+
+    padding: 30px;
+
+    background-color: var(--blanco);
+
+    border: 1px solid var(--borde);
+
+    border-radius: 18px;
+
+    box-shadow: var(--sombra);
+}
+
+
+/* ============================================================
+   TÍTULO DEL FORMULARIO
+   ============================================================ */
+
+.formulario-timelog h2 {
+    margin: 0 0 27px;
+
+    padding-bottom: 22px;
+
+    border-bottom: 1px solid #eef2f7;
+
+    font-size: 21px;
+
+    color: var(--texto);
+}
+
+
+/* ============================================================
+   FORMULARIO
+   ============================================================ */
+
+.formulario-timelog form {
+    display: grid;
+
+    grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    gap: 21px;
+}
+
+
+/* ============================================================
+   CAMPOS
+   ============================================================ */
+
+.campo {
+    min-width: 0;
+}
+
+.campo label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #334155;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.campo input {
+    width: 100%;
+
+    padding: 12px 13px;
+
+    border: 1px solid #d8dee8;
+
+    border-radius: 10px;
+
+    background-color: #fbfcfe;
+
+    color: var(--texto);
+
+    font-family: inherit;
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+            border-color 0.2s ease,
+            box-shadow 0.2s ease,
+            background-color 0.2s ease;
+}
+
+.campo input:hover {
+    border-color: #c4ccda;
+
+    background-color: white;
+}
+
+.campo input:focus {
+    border-color: var(--primario);
+
+    background-color: white;
+
+    box-shadow:
+            0 0 0 4px rgba(79, 70, 229, 0.10);
+}
+
+.campo input::placeholder {
+    color: #a0a9b8;
+}
+
+
+/* ============================================================
+   BOTONES DEL FORMULARIO
+   ============================================================ */
+
+.formulario-timelog button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 43px;
+
+    padding: 10px 18px;
+
+    border-radius: 10px;
+
+    border: none;
+
+    background:
+            linear-gradient(
+                    135deg,
+                    var(--primario),
+                    #6366f1
+            );
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+            0 5px 14px rgba(79, 70, 229, 0.22);
+
+    transition:
+            background-color 0.2s ease,
+            transform 0.15s ease,
+            box-shadow 0.2s ease;
+}
+
+.formulario-timelog button:hover {
+    background:
+            linear-gradient(
+                    135deg,
+                    var(--primario-hover),
+                    #4f46e5
+            );
+
+    box-shadow:
+            0 8px 20px rgba(79, 70, 229, 0.28);
+
+    transform: translateY(-1px);
+}
+
+.formulario-timelog button:active {
+    transform: scale(0.98);
+}
+
+
+/* ============================================================
+   BOTÓN CANCELAR
+   ============================================================ */
+
+.formulario-timelog a {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 43px;
+
+    padding: 10px 18px;
+
+    border-radius: 10px;
+
+    border: 1px solid #e2e8f0;
+
+    background-color: #f1f5f9;
+
+    color: #475569;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition:
+            background-color 0.2s ease,
+            color 0.2s ease,
+            transform 0.15s ease;
+}
+
+.formulario-timelog a:hover {
+    background-color: #e2e8f0;
+
+    color: #334155;
+
+    transform: translateY(-1px);
+}
+
+
+/* ============================================================
+   LISTA DE TIMELOG
+   ============================================================ */
+
+.lista-timelog {
+    width: 100%;
+    max-width: 1250px;
+
+    margin: 0 auto;
+
+    padding: 0 28px 70px;
+}
+
+
+/* ============================================================
+   TÍTULO LISTA
+   ============================================================ */
+
+.lista-timelog > h2 {
+    margin: 0 0 21px;
+
+    font-size: 25px;
+
+    letter-spacing: -0.4px;
+
+    color: var(--texto);
+}
+
+
+/* ============================================================
+   MENSAJE SIN REGISTROS
+   ============================================================ */
+
+.lista-timelog > p {
+    margin: 0;
+
+    padding: 60px 25px;
+
+    background-color: var(--blanco);
+
+    border: 1px solid var(--borde);
+
+    border-radius: 18px;
+
+    box-shadow: var(--sombra);
+
+    text-align: center;
+
+    color: var(--texto-secundario);
+
+    font-size: 14px;
+}
+
+
+/* ============================================================
+   GRID DE REGISTROS
+   ============================================================ */
+
+.timelogs {
+    display: grid;
+
+    grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    gap: 22px;
+}
+
+
+/* ============================================================
+   TARJETA TIMELOG
+   ============================================================ */
+
+.timelog {
+    position: relative;
+
+    background-color: var(--blanco);
+
+    border: 1px solid var(--borde);
+
+    border-radius: 16px;
+
+    padding: 23px;
+
+    box-shadow:
+            0 5px 18px rgba(15, 23, 42, 0.055);
+
+    overflow: hidden;
+
+    transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease,
+            border-color 0.2s ease;
+}
+
+
+/* ============================================================
+   LÍNEA SUPERIOR DE LA TARJETA
+   ============================================================ */
+
+.timelog::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 4px;
+
+    background:
+            linear-gradient(
+                    90deg,
+                    var(--primario),
+                    #818cf8
+            );
+}
+
+
+/* ============================================================
+   HOVER TARJETA
+   ============================================================ */
+
+.timelog:hover {
+    transform: translateY(-4px);
+
+    border-color: #c7d2fe;
+
+    box-shadow: var(--sombra-hover);
+}
+
+
+/* ============================================================
+   TÍTULO DEL REGISTRO
+   ============================================================ */
+
+.timelog h3 {
+    margin: 0 0 18px;
+
+    font-size: 20px;
+
+    line-height: 1.35;
+
+    letter-spacing: -0.2px;
+
+    color: var(--texto);
+}
+
+
+/* ============================================================
+   INFORMACIÓN DEL REGISTRO
+   ============================================================ */
+
+.timelog > p {
+    margin: 0 0 10px;
+
+    padding: 10px 11px;
+
+    border-radius: 9px;
+
+    background-color: var(--gris-suave);
+
+    color: var(--texto-secundario);
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+.timelog > p strong {
+    color: #334155;
+
+    font-weight: 700;
+}
+
+
+/* ============================================================
+   ÚLTIMO PÁRRAFO
+   ============================================================ */
+
+.timelog > p:nth-of-type(4) {
+    margin-bottom: 10px;
+}
+
+
+/* ============================================================
+   ESTADO
+   ============================================================ */
+
+.timelog > p:last-of-type {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+
+    background-color: transparent;
+
+    padding: 0;
+
+    border-radius: 0;
+}
+
+
+/* ============================================================
+   ESTADO ACTIVO
+   ============================================================ */
+
+.estado-activo {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 6px 11px;
+
+    border-radius: 999px;
+
+    background-color: var(--verde-suave);
+
+    border: 1px solid #bbf7d0;
+
+    color: var(--verde);
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+.estado-activo::before {
+    content: "";
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background-color: var(--verde);
+
+    box-shadow:
+            0 0 0 4px rgba(22, 163, 74, 0.10);
+
+    animation: pulso 1.8s infinite;
+}
+
+
+/* ============================================================
+   ESTADO FINALIZADO
+   ============================================================ */
+
+.estado-finalizado {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 6px 11px;
+
+    border-radius: 999px;
+
+    background-color: var(--azul-suave);
+
+    border: 1px solid #bfdbfe;
+
+    color: var(--azul);
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+.estado-finalizado::before {
+    content: "";
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background-color: var(--azul);
+}
+
+
+/* ============================================================
+   ANIMACIÓN ESTADO ACTIVO
+   ============================================================ */
+
+@keyframes pulso {
+
+    0% {
+        box-shadow:
+                0 0 0 0 rgba(22, 163, 74, 0.35);
+    }
+
+    70% {
+        box-shadow:
+                0 0 0 6px rgba(22, 163, 74, 0);
+    }
+
+    100% {
+        box-shadow:
+                0 0 0 0 rgba(22, 163, 74, 0);
+    }
+}
+
+
+/* ============================================================
+   ACCIONES
+   ============================================================ */
+
+.acciones {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    padding-top: 17px;
+
+    border-top: 1px solid #eef2f7;
+}
+
+.acciones form {
+    margin: 0;
+}
+
+
+/* ============================================================
+   BOTONES DE ACCIÓN
+   ============================================================ */
+
+.acciones button {
+    min-height: 37px;
+
+    padding: 8px 14px;
+
+    border-radius: 9px;
+
+    border: 1px solid #e2e8f0;
+
+    background-color: #f8fafc;
+
+    color: #64748b;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+            background-color 0.2s ease,
+            color 0.2s ease,
+            border-color 0.2s ease,
+            transform 0.15s ease,
+            box-shadow 0.2s ease;
+}
+
+.acciones button:hover {
+    transform: translateY(-1px);
+}
+
+
+/* ============================================================
+   BOTÓN INICIAR CONTEO
+   ============================================================ */
+
+/*
+   El primer formulario de .acciones corresponde a
+   iniciar o finalizar el conteo.
+*/
+
+.acciones form:first-child button {
+    background-color: var(--verde-suave);
+
+    border-color: #bbf7d0;
+
+    color: var(--verde);
+}
+
+.acciones form:first-child button:hover {
+    background-color: #dcfce7;
+
+    border-color: #86efac;
+
+    color: var(--verde-hover);
+
+    box-shadow:
+            0 5px 12px rgba(22, 163, 74, 0.12);
+}
+
+
+/* ============================================================
+   BOTÓN EDITAR
+   ============================================================ */
+
+/*
+   El segundo formulario corresponde a Editar.
+*/
+
+.acciones form:nth-child(2) button:hover {
+    background-color: var(--primario-suave);
+
+    border-color: #c7d2fe;
+
+    color: var(--primario);
+
+    box-shadow:
+            0 5px 12px rgba(79, 70, 229, 0.10);
+}
+
+
+/* ============================================================
+   BOTÓN ELIMINAR
+   ============================================================ */
+
+/*
+   El último formulario corresponde a Eliminar.
+*/
+
+.acciones form:last-child button:hover {
+    background-color: var(--rojo-suave);
+
+    border-color: #fecaca;
+
+    color: var(--rojo);
+
+    box-shadow:
+            0 5px 12px rgba(220, 38, 38, 0.10);
+}
+
+
+/* ============================================================
+   INPUT DATETIME-LOCAL
+   ============================================================ */
+
+.campo input[type="datetime-local"] {
+    color-scheme: light;
+}
+
+
+/* ============================================================
+   INPUT NUMBER
+   ============================================================ */
+
+.campo input[type="number"] {
+    appearance: textfield;
+}
+
+.campo input[type="number"]::-webkit-inner-spin-button,
+.campo input[type="number"]::-webkit-outer-spin-button {
+    opacity: 1;
+}
+
+
+/* ============================================================
+   RESPONSIVE - TABLET
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+    .timelogs {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ============================================================
+   RESPONSIVE - MÓVIL
+   ============================================================ */
+
+@media (max-width: 680px) {
+
+    body > h1 {
+        padding:
+                28px
+                15px
+                0;
+
+        font-size: 30px;
+    }
+
+
+    .formulario-timelog {
+        margin-top: 25px;
+
+        padding: 22px 18px;
+
+        border-radius: 15px;
+    }
+
+
+    .formulario-timelog form {
+        grid-template-columns: 1fr;
+    }
+
+
+    .lista-timelog {
+        padding:
+                0
+                15px
+                45px;
+    }
+
+
+    .lista-timelog > h2 {
+        font-size: 23px;
+    }
+
+
+    .timelog {
+        padding: 19px 17px;
+    }
+
+
+    .timelog h3 {
+        font-size: 18px;
+    }
+
+
+    .acciones {
+        flex-direction: column;
+    }
+
+
+    .acciones form {
+        width: 100%;
+    }
+
+
+    .acciones button {
+        width: 100%;
+    }
+
+
+    .formulario-timelog button,
+    .formulario-timelog a {
+        width: 100%;
+    }
+}
+
+
+/* ============================================================
+   RESPONSIVE - MÓVIL PEQUEÑO
+   ============================================================ */
+
+@media (max-width: 430px) {
+
+    body > h1 {
+        padding:
+                25px
+                13px
+                0;
+
+        font-size: 27px;
+    }
+
+
+    .formulario-timelog {
+        margin-top: 22px;
+
+        padding: 19px 15px;
+    }
+
+
+    .formulario-timelog h2 {
+        font-size: 19px;
+    }
+
+
+    .lista-timelog {
+        padding:
+                0
+                13px
+                40px;
+    }
+
+
+    .lista-timelog > h2 {
+        font-size: 21px;
+    }
+
+
+    .timelog {
+        padding: 18px 15px;
+    }
+
+
+    .timelog h3 {
+        font-size: 18px;
+    }
+
+
+    .timelog > p {
+        font-size: 12px;
+    }
+
+
+    .estado-activo,
+    .estado-finalizado {
+        font-size: 11px;
+    }
+}

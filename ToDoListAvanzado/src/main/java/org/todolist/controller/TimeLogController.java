@@ -38,6 +38,28 @@ public class TimeLogController {
 
         return timeLogService.buscarRegistroPorId(id);
     }
+    
+    
+    public TimeLog buscarRegistroActivoPorTarea(int idTarea) {
+
+        return timeLogService.buscarRegistroActivoPorTarea(idTarea);
+    }
+    
+    
+    public TimeLog iniciarConteo(int idTarea) {
+
+        return timeLogService.iniciarConteo(
+                idTarea
+        );
+    }
+
+
+    public void finalizarConteo(int idRegistro) {
+
+        timeLogService.finalizarConteo(
+                idRegistro
+        );
+    }
 
 
     ///---Actualizar registro---///

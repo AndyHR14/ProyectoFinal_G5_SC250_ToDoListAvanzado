@@ -12,14 +12,13 @@ package org.todolist.repository;
 import org.todolist.model.TimeLog;
 
 import java.sql.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TimeLogRepository {
 
     ///---Guardar registro de tiempo---///
-    public void guardar(TimeLog registro) {
+    public int guardar(TimeLog registro) {
 
         String sql = """
                 INSERT INTO registro_tiempo
@@ -28,7 +27,11 @@ public class TimeLogRepository {
                 """;
 
         try (Connection conexion = DatabaseConnection.conectar();
-             PreparedStatement statement = conexion.prepareStatement(sql)) {
+             PreparedStatement statement =
+                     conexion.prepareStatement(
+                             sql,
+                             Statement.RETURN_GENERATED_KEYS
+                     )) {
 
             statement.setTimestamp(
                     1,
@@ -44,7 +47,10 @@ public class TimeLogRepository {
 
             } else {
 
-                statement.setNull(2, Types.TIMESTAMP);
+                statement.setNull(
+                        2,
+                        Types.TIMESTAMP
+                );
             }
 
             statement.setInt(
@@ -59,11 +65,28 @@ public class TimeLogRepository {
 
             statement.executeUpdate();
 
-            System.out.println("Registro de tiempo guardado correctamente.");
+            try (ResultSet resultado =
+                         statement.getGeneratedKeys()) {
+
+                if (resultado.next()) {
+
+                    int idGenerado =
+                            resultado.getInt(1);
+
+                    registro.setIdRegistro(idGenerado);
+
+                    System.out.println(
+                            "Registro de tiempo guardado correctamente."
+                    );
+
+                    return idGenerado;
+                }
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return -1;
     }
 
 
@@ -115,6 +138,41 @@ public class TimeLogRepository {
             }
 
         } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+    
+    
+    
+    public TimeLog buscarRegistroActivoPorTarea(int idTarea) {
+
+        String sql = """
+                SELECT *
+                FROM registro_tiempo
+                WHERE id_tarea = ?
+                  AND fin IS NULL
+                LIMIT 1
+                """;
+
+        try (Connection conexion = DatabaseConnection.conectar();
+             PreparedStatement statement =
+                     conexion.prepareStatement(sql)) {
+
+            statement.setInt(1, idTarea);
+
+            try (ResultSet resultado =
+                         statement.executeQuery()) {
+
+                if (resultado.next()) {
+
+                    return convertirRegistro(resultado);
+                }
+            }
+
+        } catch (SQLException e) {
+
             e.printStackTrace();
         }
 
