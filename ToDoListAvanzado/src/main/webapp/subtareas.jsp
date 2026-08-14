@@ -39,7 +39,76 @@
 
 <body>
 
+<!-- ============================================================
+     CABECERA
+     ============================================================ -->
 
+<header class="barra-superior">
+
+    <div class="barra-contenido">
+
+        <div class="logo">
+
+            <span class="logo-icono">✓</span>
+
+            <span>ToDoList</span>
+
+        </div>
+
+
+        <div class="usuario-menu">
+
+            <!-- Accesos rapidos -->
+            <nav class="accesos-rapidos">
+
+                <a
+                    href="${pageContext.request.contextPath}/tareas"
+                    class="acceso-rapido">
+                    Mis tareas
+                </a>
+
+                <a href="${pageContext.request.contextPath}/tags"
+                   class="acceso-rapido">
+                    Tags
+                </a>
+
+                <a href="${pageContext.request.contextPath}/categorias"
+                   class="acceso-rapido">
+                    Categorías
+                </a>
+
+                <a href="${pageContext.request.contextPath}/subtareas"
+                   class="acceso-rapido">
+                    Subtareas
+                </a>
+
+                <a href="${pageContext.request.contextPath}/recordatorios"
+                   class="acceso-rapido">
+                    Recordatorios
+                </a>
+
+                <a href="${pageContext.request.contextPath}/timelog"
+                   class="acceso-rapido">
+                    Timelog
+                </a>
+
+            </nav>
+
+            <a
+                    class="boton-salir"
+                    href="${pageContext.request.contextPath}/usuario?accion=logout">
+
+                Cerrar sesión
+
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+                    <br>
 <h1>Subtareas</h1>
 
 
